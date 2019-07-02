@@ -26,6 +26,7 @@ def test_cluster_order():
     typPeriods_wind = aggregation_wind.createTypicalPeriods()
 
     print(aggregation_wind.clusterOrder)
+    print(aggregation_wind.accuracyIndicators)
 
     aggregation_predefClusterOrder = tsam.TimeSeriesAggregation(raw, noTypicalPeriods=8, hoursPerPeriod=24,
                                                                 clusterMethod='hierarchical',
