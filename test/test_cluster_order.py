@@ -25,11 +25,15 @@ def test_cluster_order():
 
     typPeriods_wind = aggregation_wind.createTypicalPeriods()
 
+    print(aggregation_wind.clusterOrder)
+
     aggregation_predefClusterOrder = tsam.TimeSeriesAggregation(raw, noTypicalPeriods=8, hoursPerPeriod=24,
                                                                 clusterMethod='hierarchical',
                                                                 predefClusterOrder=aggregation_wind.clusterOrder)
 
     typPeriods_predefClusterOrder = aggregation_predefClusterOrder.createTypicalPeriods()
+
+    print(aggregation_wind.clusterOrder)
 
     aggregation_predefClusterOrderAndClusterCenters = tsam.TimeSeriesAggregation(raw,
                                                                                  noTypicalPeriods=8, hoursPerPeriod=24,
@@ -51,7 +55,9 @@ def test_cluster_order():
 
     # rearange their order
     orig1 = orig_raw_predefClusterOrder[typPeriods_predefClusterOrder.columns].unstack().loc[sortedDaysOrig1,:].stack()
+    print(orig1.head())
     test1 = typPeriods_predefClusterOrder.unstack().loc[sortedDaysTest1,:].stack()
+    print(test1.head())
     orig2 = orig_raw_predefClusterOrderAndClusterCenters[typPeriods_predefClusterOrderAndClusterCenters.columns].unstack().loc[sortedDaysOrig2,:].stack()
     test2 = typPeriods_predefClusterOrderAndClusterCenters.unstack().loc[sortedDaysTest2,:].stack()
 
